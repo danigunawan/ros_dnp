@@ -1,4 +1,4 @@
-int16 x
-int16 y
-int16 w
-int16 h
+int16 x1
+int16 y1
+int16 x2
+int16 y2

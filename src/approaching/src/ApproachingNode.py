@@ -37,7 +37,7 @@ class ApproachingNode(object):
     def init_topic(self):
         
         # subscriber
-        rospy.Subscriber(self.topic_pose, , self.pose_cb)
+        rospy.Subscriber(self.topic_pose, Persons, self.pose_cb)
         rospy.Subscriber(self.topic_color_img, Image, self.color_callback)
         rospy.Subscriber(self.topic_depth_img, Image, self.depth_callback)
         rospy.Subscriber(self.topic_intrin, CameraInfo, self.intrin_callback)
@@ -198,4 +198,5 @@ if __name__=="__main__":
 
         if c==ord('e'):
             exit()
+        rospy.spinOnce()
 
