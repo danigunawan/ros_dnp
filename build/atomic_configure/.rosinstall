@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/vision/work/computer_vision_projects/catkin_ws/devel/setup.sh

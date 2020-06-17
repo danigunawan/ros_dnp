@@ -1,0 +1,6 @@
+{
+    "bottle": {
+        "coord_file": "coord_box/bottle.txt",
+        "data_folder": "cropped_dir/bottle"
+    }
+}

@@ -1,0 +1,8 @@
+prefix=/home/vision/work/computer_vision_projects/catkin_ws/install
+
+Name: approaching
+Description: Description of approaching
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/vision/work/computer_vision_projects/catkin_ws/install/lib 
+Requires: 

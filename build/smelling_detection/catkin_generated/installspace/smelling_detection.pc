@@ -1,0 +1,8 @@
+prefix=/home/vision/work/computer_vision_projects/catkin_ws/install
+
+Name: smelling_detection
+Description: Description of smelling_detection
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/vision/work/computer_vision_projects/catkin_ws/install/lib 
+Requires: 

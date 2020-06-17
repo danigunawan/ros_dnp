@@ -1,0 +1,14 @@
+{
+    "glass_bottle": {
+        "coord_file": "coord_box/general_place.txt",
+        "data_folder": "cropped_dir/glass_bottle"
+    },
+    "pink_bottle": {
+        "coord_file": "coord_box/general_place.txt",
+        "data_folder": "cropped_dir/pink_bottle"
+    },
+    "white_bottle": {
+        "coord_file": "coord_box/general_place.txt",
+        "data_folder": "cropped_dir/white_bottle"
+    }
+}

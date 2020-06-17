@@ -1,0 +1,8 @@
+prefix=/home/vision/work/computer_vision_projects/catkin_ws/install
+
+Name: tfpose_ros
+Description: Description of tfpose_ros
+Version: 0.1.0
+Cflags: -I/home/vision/work/computer_vision_projects/catkin_ws/install/include
+Libs: -L/home/vision/work/computer_vision_projects/catkin_ws/install/lib 
+Requires: rospy message_generation message_runtime

@@ -1,0 +1,8 @@
+prefix=/home/vision/work/computer_vision_projects/catkin_ws/devel
+
+Name: head_pose_estimation
+Description: Description of head_pose_estimation
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/vision/work/computer_vision_projects/catkin_ws/devel/lib 
+Requires: 

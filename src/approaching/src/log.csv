@@ -1,0 +1,3 @@
+,InteractionID,PersonID,Prev_State,State
+0,I3001,C3001,Init,Approach
+1,I3000,C3001,Approach,Leave

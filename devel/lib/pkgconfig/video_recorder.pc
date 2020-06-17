@@ -1,0 +1,8 @@
+prefix=/home/vision/work/computer_vision_projects/catkin_ws/devel
+
+Name: video_recorder
+Description: Description of video_recorder
+Version: 0.0.1
+Cflags: 
+Libs: -L/home/vision/work/computer_vision_projects/catkin_ws/devel/lib 
+Requires: 
