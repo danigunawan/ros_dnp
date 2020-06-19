@@ -56,16 +56,6 @@ CMAKE_BINARY_DIR = /home/vision/work/computer_vision_projects/catkin_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -89,16 +79,16 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target install/strip
-install/strip/fast: install/strip
+# Special rule for the target test
+test/fast: test
 
-.PHONY : install/strip/fast
+.PHONY : test/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -111,16 +101,26 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : test/fast
+.PHONY : list_install_components/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -165,19 +165,227 @@ depend:
 	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_genpy.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_genpy.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_genpy.dir/rule
+
+# Convenience name for target.
+smelling_detection_genpy: smelling_detection/CMakeFiles/smelling_detection_genpy.dir/rule
+
+.PHONY : smelling_detection_genpy
+
+# fast build rule for target.
+smelling_detection_genpy/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_genpy.dir/build.make smelling_detection/CMakeFiles/smelling_detection_genpy.dir/build
+.PHONY : smelling_detection_genpy/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_gennodejs.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_gennodejs.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_gennodejs.dir/rule
+
+# Convenience name for target.
+smelling_detection_gennodejs: smelling_detection/CMakeFiles/smelling_detection_gennodejs.dir/rule
+
+.PHONY : smelling_detection_gennodejs
+
+# fast build rule for target.
+smelling_detection_gennodejs/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_gennodejs.dir/build.make smelling_detection/CMakeFiles/smelling_detection_gennodejs.dir/build
+.PHONY : smelling_detection_gennodejs/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+smelling_detection_generate_messages_cpp: smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp.dir/rule
+
+.PHONY : smelling_detection_generate_messages_cpp
+
+# fast build rule for target.
+smelling_detection_generate_messages_cpp/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp.dir/build.make smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp.dir/build
+.PHONY : smelling_detection_generate_messages_cpp/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_ObjectStatus.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_ObjectStatus.dir/rule
+.PHONY : smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_ObjectStatus.dir/rule
+
+# Convenience name for target.
+_smelling_detection_generate_messages_check_deps_ObjectStatus: smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_ObjectStatus.dir/rule
+
+.PHONY : _smelling_detection_generate_messages_check_deps_ObjectStatus
+
+# fast build rule for target.
+_smelling_detection_generate_messages_check_deps_ObjectStatus/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_ObjectStatus.dir/build.make smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_ObjectStatus.dir/build
+.PHONY : _smelling_detection_generate_messages_check_deps_ObjectStatus/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_generate_messages_nodejs.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_generate_messages_nodejs.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+smelling_detection_generate_messages_nodejs: smelling_detection/CMakeFiles/smelling_detection_generate_messages_nodejs.dir/rule
+
+.PHONY : smelling_detection_generate_messages_nodejs
+
+# fast build rule for target.
+smelling_detection_generate_messages_nodejs/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_generate_messages_nodejs.dir/build.make smelling_detection/CMakeFiles/smelling_detection_generate_messages_nodejs.dir/build
+.PHONY : smelling_detection_generate_messages_nodejs/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_generate_messages_lisp.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_generate_messages_lisp.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+smelling_detection_generate_messages_lisp: smelling_detection/CMakeFiles/smelling_detection_generate_messages_lisp.dir/rule
+
+.PHONY : smelling_detection_generate_messages_lisp
+
+# fast build rule for target.
+smelling_detection_generate_messages_lisp/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_generate_messages_lisp.dir/build.make smelling_detection/CMakeFiles/smelling_detection_generate_messages_lisp.dir/build
+.PHONY : smelling_detection_generate_messages_lisp/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_generate_messages_py.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_generate_messages_py.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_generate_messages_py.dir/rule
+
+# Convenience name for target.
+smelling_detection_generate_messages_py: smelling_detection/CMakeFiles/smelling_detection_generate_messages_py.dir/rule
+
+.PHONY : smelling_detection_generate_messages_py
+
+# fast build rule for target.
+smelling_detection_generate_messages_py/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_generate_messages_py.dir/build.make smelling_detection/CMakeFiles/smelling_detection_generate_messages_py.dir/build
+.PHONY : smelling_detection_generate_messages_py/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_genlisp.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_genlisp.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_genlisp.dir/rule
+
+# Convenience name for target.
+smelling_detection_genlisp: smelling_detection/CMakeFiles/smelling_detection_genlisp.dir/rule
+
+.PHONY : smelling_detection_genlisp
+
+# fast build rule for target.
+smelling_detection_genlisp/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_genlisp.dir/build.make smelling_detection/CMakeFiles/smelling_detection_genlisp.dir/build
+.PHONY : smelling_detection_genlisp/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_gencpp.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_gencpp.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_gencpp.dir/rule
+
+# Convenience name for target.
+smelling_detection_gencpp: smelling_detection/CMakeFiles/smelling_detection_gencpp.dir/rule
+
+.PHONY : smelling_detection_gencpp
+
+# fast build rule for target.
+smelling_detection_gencpp/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_gencpp.dir/build.make smelling_detection/CMakeFiles/smelling_detection_gencpp.dir/build
+.PHONY : smelling_detection_gencpp/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_Rectangle.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_Rectangle.dir/rule
+.PHONY : smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_Rectangle.dir/rule
+
+# Convenience name for target.
+_smelling_detection_generate_messages_check_deps_Rectangle: smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_Rectangle.dir/rule
+
+.PHONY : _smelling_detection_generate_messages_check_deps_Rectangle
+
+# fast build rule for target.
+_smelling_detection_generate_messages_check_deps_Rectangle/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_Rectangle.dir/build.make smelling_detection/CMakeFiles/_smelling_detection_generate_messages_check_deps_Rectangle.dir/build
+.PHONY : _smelling_detection_generate_messages_check_deps_Rectangle/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_generate_messages.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_generate_messages.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_generate_messages.dir/rule
+
+# Convenience name for target.
+smelling_detection_generate_messages: smelling_detection/CMakeFiles/smelling_detection_generate_messages.dir/rule
+
+.PHONY : smelling_detection_generate_messages
+
+# fast build rule for target.
+smelling_detection_generate_messages/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_generate_messages.dir/build.make smelling_detection/CMakeFiles/smelling_detection_generate_messages.dir/build
+.PHONY : smelling_detection_generate_messages/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_generate_messages_eus.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_generate_messages_eus.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+smelling_detection_generate_messages_eus: smelling_detection/CMakeFiles/smelling_detection_generate_messages_eus.dir/rule
+
+.PHONY : smelling_detection_generate_messages_eus
+
+# fast build rule for target.
+smelling_detection_generate_messages_eus/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_generate_messages_eus.dir/build.make smelling_detection/CMakeFiles/smelling_detection_generate_messages_eus.dir/build
+.PHONY : smelling_detection_generate_messages_eus/fast
+
+# Convenience name for target.
+smelling_detection/CMakeFiles/smelling_detection_geneus.dir/rule:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 smelling_detection/CMakeFiles/smelling_detection_geneus.dir/rule
+.PHONY : smelling_detection/CMakeFiles/smelling_detection_geneus.dir/rule
+
+# Convenience name for target.
+smelling_detection_geneus: smelling_detection/CMakeFiles/smelling_detection_geneus.dir/rule
+
+.PHONY : smelling_detection_geneus
+
+# fast build rule for target.
+smelling_detection_geneus/fast:
+	cd /home/vision/work/computer_vision_projects/catkin_ws/build && $(MAKE) -f smelling_detection/CMakeFiles/smelling_detection_geneus.dir/build.make smelling_detection/CMakeFiles/smelling_detection_geneus.dir/build
+.PHONY : smelling_detection_geneus/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... rebuild_cache"
-	@echo "... install/strip"
-	@echo "... install/local"
 	@echo "... test"
+	@echo "... install/local"
+	@echo "... list_install_components"
+	@echo "... install/strip"
+	@echo "... smelling_detection_genpy"
+	@echo "... smelling_detection_gennodejs"
+	@echo "... smelling_detection_generate_messages_cpp"
+	@echo "... _smelling_detection_generate_messages_check_deps_ObjectStatus"
+	@echo "... smelling_detection_generate_messages_nodejs"
+	@echo "... smelling_detection_generate_messages_lisp"
 	@echo "... edit_cache"
+	@echo "... smelling_detection_generate_messages_py"
+	@echo "... smelling_detection_genlisp"
+	@echo "... smelling_detection_gencpp"
+	@echo "... _smelling_detection_generate_messages_check_deps_Rectangle"
+	@echo "... smelling_detection_generate_messages"
+	@echo "... smelling_detection_generate_messages_eus"
+	@echo "... smelling_detection_geneus"
 .PHONY : help
 
 

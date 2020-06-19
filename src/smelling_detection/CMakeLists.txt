@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -51,7 +52,7 @@ add_message_files(
    FILES
    ObjectStatus.msg
    Rectangle.msg
- )
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -71,9 +72,6 @@ add_message_files(
  generate_messages(
    DEPENDENCIES
    std_msgs
-   FILES
-   ObjectStatus.msg
-   Rectangle.msg
  )
 
 ################################################
@@ -106,10 +104,11 @@ add_message_files(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES smelling_detection
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES smelling_detection
+  CATKIN_DEPENDS roscpp rospy std_msgs
+  DEPENDS system_lib
+  message_generation message_runtime
 )
 
 ###########

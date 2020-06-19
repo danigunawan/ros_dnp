@@ -14,7 +14,8 @@ class TemplateMatching:
         
         self.load_multi_coord_objects()
 
-        self.thresh_matching = 0.7
+        self.thresh_matching = 0.65
+        self.log_i = 0
     
     def get_name_objects(self):
 
@@ -45,6 +46,9 @@ class TemplateMatching:
             if exists:
                 exists_objects_name.append(key)
                 dict_box[key] = box 
+            else:
+                coord_place = self.multi_objects_data[key]["coord_data"]
+                dict_box[key] = coord_place
 
         return exists_objects_name, dict_box
 
@@ -72,8 +76,9 @@ class TemplateMatching:
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         gray_image_object = cv2.cvtColor(image_object, cv2.COLOR_BGR2GRAY)
 
-        if gray_image.shape[0] <= gray_image_object.shape[0] or gray_image.shape[1] <= gray_image_object.shape[1]:
-            return False, (None, None)
+        #if gray_image.shape[0] <= gray_image_object.shape[0] or gray_image.shape[1] <= gray_image_object.shape[1]:
+        #    print("Hello")
+        #    return False, (None, None)
 
         res = cv2.matchTemplate(gray_image, gray_image_object, method_match)
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
@@ -98,11 +103,12 @@ class TemplateMatching:
 
         if is_exists:
             cv2.rectangle(image, top_left, bottom_right, (255, 0, 0), 2)
-            cv2.imshow("testtt", image); cv2.waitKey(0)
+            #cv2.imshow("testtt", image) 
+            #cv2.waitKey(10)
         
         return is_exists, (top_left, bottom_right)
 
-    def check_object_dir_in_image(self, image_dir, image, coord_place, method_match=cv2.TM_CCOEFF_NORMED):
+    def check_object_dir_in_image(self, image_dir, image, coord_place, method_match=cv2.TM_CCOEFF_NORMED, viz=True):
 
         list_img_path = glob.glob("{}/*.png".format(image_dir))
         is_exists = False
@@ -112,10 +118,19 @@ class TemplateMatching:
 
         for img_path in list_img_path:
             image_object = cv2.imread(img_path)
+            print(img_path, image_object)
             ho, wo, _ = image_object.shape
-            image_object = cv2.resize(image_object, (90, int(90*ho/wo)))
+            #image_object = cv2.resize(image_object, (90, int(90*ho/wo)))
 
-            is_exists, box = self.check_object_in_image(image_object, image[coord_place[0][1]:coord_place[1][1], coord_place[0][0]:coord_place[1][0]], method_match)
+            h, w = coord_place[1][1] - coord_place[0][1], coord_place[1][0] - coord_place[0][0]
+            is_exists, box = self.check_object_in_image(cv2.resize(image_object, (w,int(h*ho/wo) )), image[coord_place[0][1]:coord_place[1][1], coord_place[0][0]:coord_place[1][0]], method_match)
+
+            if viz:
+                #cv2.imwrite("log/img/{}.png".format(self.log_i), image[coord_place[0][1]:coord_place[1][1], coord_place[0][0]:coord_place[1][0]])
+                #self.log_i += 1
+                temp = np.hstack([cv2.resize(image_object, (w, h)), image[coord_place[0][1]:coord_place[1][1], coord_place[0][0]:coord_place[1][0]]])
+                #cv2.imshow("checking {}".format(img_path), temp)
+
             if is_exists:
                 recoorded_box[0] = (box[0][0]+coord_place[0][0], box[0][1]+coord_place[0][1])
                 recoorded_box[1] = (box[1][0]+coord_place[0][0], box[1][1]+coord_place[0][1])

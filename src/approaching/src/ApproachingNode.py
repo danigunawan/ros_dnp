@@ -7,11 +7,15 @@ from sensor_msgs.msg import CameraInfo
 
 from tfpose_ros.msg import Persons, Person, BodyPartElm
 from tf_pose.estimator import Human, BodyPart, TfPoseEstimator
+from smelling_detection.msg import Rectangle, ObjectStatus
+from approaching.msg import ApproachInfo, Coord
 
 import numpy as np
 import time
 import cv2
 import copy
+import rospy
+import math
 
 class ApproachingNode(object):
 
@@ -33,6 +37,10 @@ class ApproachingNode(object):
         self.intrin = None
 
         self.init_topic()
+
+        self.object_status = None
+        self.app_detect = ApproachingDetection(None, None, False)
+        self.app_detect.set_tracking_type(2)
     
     def init_topic(self):
         
@@ -79,7 +87,7 @@ class ApproachingNode(object):
 
         self.humans = humans
 
-        self.image_test_pose = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
+        self.image_test_pose = TfPoseEstimator.draw_humans(self.color_img, humans, imgcopy=False)
     
     def color_callback(self, data): # Need semaphore to protect self.color_img, because it is also used by is_waving_hand function
         #print("Having color image")
@@ -101,7 +109,8 @@ class ApproachingNode(object):
         self.depth_img = img
 
     def object_status_cb(self, data):
-        pass
+        
+        self.object_status = data
 
     def get_humans(self):
         return self.humans
@@ -116,14 +125,42 @@ class ApproachingNode(object):
                     ,self.color_img)
         return None
 
+    def get_depth_xy(self, x, y):
+
+         if self.depth_img is None:
+            return None
+
+         if x >= self.color_img.shape[1]:
+             x = self.color_img.shape[1] - 1
+         if y >= self.color_img.shape[0]:
+             y = self.color_img.shape[0] - 1
+
+         return self.depth_img[y, x]/1000
+   
+    def calculate_distance(self, ix, iy, x, y):
+
+         udist = self.get_depth_xy(ix, iy)
+         vdist = self.get_depth_xy(x, y)
+
+         point1 = rs.rs2_deproject_pixel_to_point(self.intrin, [ix, iy], udist)
+         point2 = rs.rs2_deproject_pixel_to_point(self.intrin, [x, y], vdist)
+
+         dist = math.sqrt(math.pow(point1[0] - point2[0], 2) + \
+                 math.pow(point1[1] - point2[1],2) + math.pow(point1[2] - point2[2], 2))
+         return dist
+
     def get_depth_for_humans(self, dict_humans):
 
         image_h, image_w, _ = self.color_img.shape
 
         for key in dict_humans.keys():
             human = dict_humans[key]
-            ix, iy = int((self.app_detect.object_coord[0][0] + self.app_detect.object_coord[1][0])/2),\
-                    int((self.app_detect.object_coord[0][1] + self.app_detect.object_coord[1][1])/2)
+            rect = self.object_status.object_rect[0]
+            x1 = rect.x1
+            x2 = rect.x2
+            y1 = rect.y1
+            y2 = rect.y2
+            ix, iy = int((x1+x2)/2), int((y1+y2)/2)
             
             id_nose = 0
             sorted_id = sorted(human["pose"].body_parts.keys())
@@ -133,12 +170,24 @@ class ApproachingNode(object):
 
             dist = self.calculate_distance(ix, iy, x, y)
             dict_humans[key]["dist"] = round(dist, 1)
+            dict_humans[key]["coord"] = (x, y)
     
     def visualize_human(self, dict_humans):
+        
+        img = None
 
         if self.color_img is not None:
-            return self.app_detect.visualize_human(human_info, self.color_img)
-        return None
+            img = self.app_detect.visualize_human(dict_humans, self.color_img)
+            for exist, rect in zip(self.object_status.exists, \
+                    self.object_status.object_rect):
+                if not exist:
+                    color = (0, 255, 0)
+                else:
+                    color = (255, 0, 0)
+                img = cv2.rectangle(img, (rect.x1, rect.y1), \
+                        (rect.x2, rect.y2), color)
+
+        return img
 
     def create_first_human_dict(self, humans):
 
@@ -153,7 +202,23 @@ class ApproachingNode(object):
         return None
 
     def publish_approach_info(self, dict_humans):
-        pass
+        
+        if dict_humans is None:
+            return
+
+        msg = ApproachInfo()
+        msg.ids = []
+        msg.coords = []
+        msg.dists = []
+
+        for key in dict_humans.keys():
+            msg.ids.append(key)
+            coord = Coord()
+            coord.x, coord.y = dict_humans[key]["coord"]
+            msg.coords.append(coord)
+            msg.dists.append(dict_humans[key]["dist"])
+        print("Publish approach info, ", dict_humans.keys())
+        self.pub_approach_info.publish(msg)
 
 if __name__=="__main__":
     
@@ -176,8 +241,9 @@ if __name__=="__main__":
            #        humans, last_frame, frame, thresh=2, method="orb", viz=False)
            new_dict_humans = appnode.identify_human_tracking( \
                     last_dict_humans, humans, viz=False)
-           new_dict_humans = appnode.get_depth_for_humans(new_dict_humans)
-        
+           #new_dict_humans = 
+           appnode.get_depth_for_humans(new_dict_humans)
+        cv2.imshow("original", appnode.get_color_img())
         if new_dict_humans is not None:
             processed_frame = appnode.visualize_human(new_dict_humans)
         else:
@@ -189,14 +255,15 @@ if __name__=="__main__":
            last_dict_humans = appnode.create_first_human_dict(humans)
            appnode.create_first_tracking(last_dict_humans)
 
-           appnode.publish_approach_info(last_dict_humans)
-       else:
-           appnode.publish_approach_info(new_dict_humans)
+           #appnode.publish_approach_info(last_dict_humans)
+        else:
+            appnode.publish_approach_info(new_dict_humans)
 
         cv2.imshow("Processed frame", processed_frame)
         c = cv2.waitKey(10) & 0xFF
 
         if c==ord('e'):
             exit()
-        rospy.spinOnce()
+
+    rospy.spin()
 

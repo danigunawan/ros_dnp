@@ -12,7 +12,8 @@ class ApproachingDetection(object):
 
     def __init__(self, object_coord_file, model, load_model=True):
         
-        self.object_coord = pickle.load(open(object_coord_file, 'rb'))
+        if object_coord_file is not None:
+            self.object_coord = pickle.load(open(object_coord_file, 'rb'))
         if load_model:
             self.e = TfPoseEstimator(get_graph_path(model), target_size=(368,368))
         self.resize_out_ratio=4
@@ -97,7 +98,7 @@ class ApproachingDetection(object):
         img_h, img_w, _ = frame.shape
 
         for i in range(len(humans)):
-            key = "C000{}".format(i)
+            key = "{}".format(i)
             result[key] = dict()
             result[key]["pose"] = humans[i]
             box = self._get_box_from_human_pose(humans[i], img_w, img_h)
@@ -173,7 +174,7 @@ class ApproachingDetection(object):
 
         for i in range(len(new_humans)):
             
-            key = "C000{}".format(self.id_human)
+            key = "{}".format(self.id_human)
             new_dict_humans[key] = dict()
             new_dict_humans[key]["pose"] = new_humans[i]
             new_dict_humans[key]["box"] = new_humans_box[i]
@@ -243,7 +244,7 @@ class ApproachingDetection(object):
             del last_dict_humans[key]
 
         for i, human in enumerate(new_humans):
-            key = "C000{}".format(self.id_human)
+            key = "{}".format(self.id_human)
             last_dict_humans[key] = dict()
             last_dict_humans[key]["pose"] = human
             last_dict_humans[key]["box"] = new_humans_box[i]
@@ -274,10 +275,11 @@ class ApproachingDetection(object):
                     color_frame, depth_frame)
             dict_humans[key]["dist"] = round(dist, 1)
 
-    def visualize_human(self, dict_identified_humans, frame):
+    def visualize_human(self, dict_identified_humans, frame, show_object=False):
         
         viz_frame = copy.deepcopy(frame)
-        cv2.rectangle(viz_frame, self.object_coord[0], self.object_coord[1], (0, 255, 0), 1)
+        if show_object:
+            cv2.rectangle(viz_frame, self.object_coord[0], self.object_coord[1], (0, 255, 0), 1)
 
         if isinstance(dict_identified_humans, list):
             h, w, _ = frame.shape

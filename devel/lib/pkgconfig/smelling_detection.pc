@@ -3,6 +3,6 @@ prefix=/home/vision/work/computer_vision_projects/catkin_ws/devel
 Name: smelling_detection
 Description: Description of smelling_detection
 Version: 0.0.0
-Cflags: 
-Libs: -L/home/vision/work/computer_vision_projects/catkin_ws/devel/lib 
-Requires: 
+Cflags: -I/home/vision/work/computer_vision_projects/catkin_ws/devel/include -I/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/include
+Libs: -L/home/vision/work/computer_vision_projects/catkin_ws/devel/lib -lsmelling_detection
+Requires: roscpp rospy std_msgs message_generation message_runtime
