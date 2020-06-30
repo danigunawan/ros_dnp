@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "smelling_detection: 2 messages, 0 services")
+message(STATUS "smelling_detection: 4 messages, 0 services")
 
 set(MSG_I_FLAGS "-Ismelling_detection:/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg;-Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg")
 
@@ -22,6 +22,16 @@ add_custom_target(_smelling_detection_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "smelling_detection" "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg" ""
 )
 
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg" NAME_WE)
+add_custom_target(_smelling_detection_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "smelling_detection" "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg" "smelling_detection/Coord2D"
+)
+
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg" NAME_WE)
+add_custom_target(_smelling_detection_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "smelling_detection" "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg" ""
+)
+
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg" NAME_WE)
 add_custom_target(_smelling_detection_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "smelling_detection" "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg" "smelling_detection/Rectangle"
@@ -35,6 +45,18 @@ add_custom_target(_smelling_detection_generate_messages_check_deps_${_filename}
 ### Generating Messages
 _generate_msg_cpp(smelling_detection
   "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_cpp(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_cpp(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/smelling_detection
@@ -62,6 +84,10 @@ add_dependencies(smelling_detection_generate_messages smelling_detection_generat
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_cpp _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_cpp _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_cpp _smelling_detection_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_cpp _smelling_detection_generate_messages_check_deps_${_filename})
 
@@ -76,6 +102,18 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS smelling_detection_generate_message
 ### Generating Messages
 _generate_msg_eus(smelling_detection
   "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_eus(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_eus(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/smelling_detection
@@ -103,6 +141,10 @@ add_dependencies(smelling_detection_generate_messages smelling_detection_generat
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_eus _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_eus _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_eus _smelling_detection_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_eus _smelling_detection_generate_messages_check_deps_${_filename})
 
@@ -117,6 +159,18 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS smelling_detection_generate_message
 ### Generating Messages
 _generate_msg_lisp(smelling_detection
   "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_lisp(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_lisp(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/smelling_detection
@@ -144,6 +198,10 @@ add_dependencies(smelling_detection_generate_messages smelling_detection_generat
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_lisp _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_lisp _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_lisp _smelling_detection_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_lisp _smelling_detection_generate_messages_check_deps_${_filename})
 
@@ -158,6 +216,18 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS smelling_detection_generate_message
 ### Generating Messages
 _generate_msg_nodejs(smelling_detection
   "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_nodejs(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_nodejs(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/smelling_detection
@@ -185,6 +255,10 @@ add_dependencies(smelling_detection_generate_messages smelling_detection_generat
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_nodejs _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_nodejs _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_nodejs _smelling_detection_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_nodejs _smelling_detection_generate_messages_check_deps_${_filename})
 
@@ -199,6 +273,18 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS smelling_detection_generate_message
 ### Generating Messages
 _generate_msg_py(smelling_detection
   "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_py(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/smelling_detection
+)
+_generate_msg_py(smelling_detection
+  "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/smelling_detection
@@ -225,6 +311,10 @@ add_dependencies(smelling_detection_generate_messages smelling_detection_generat
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_py _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg" NAME_WE)
+add_dependencies(smelling_detection_generate_messages_py _smelling_detection_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_py _smelling_detection_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg" NAME_WE)
 add_dependencies(smelling_detection_generate_messages_py _smelling_detection_generate_messages_check_deps_${_filename})

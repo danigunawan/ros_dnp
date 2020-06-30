@@ -52,6 +52,8 @@ add_message_files(
    FILES
    ObjectStatus.msg
    Rectangle.msg
+   PickingInfo.msg
+   Coord2D.msg 
 )
 
 ## Generate services in the 'srv' folder

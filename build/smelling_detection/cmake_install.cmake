@@ -36,6 +36,8 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/smelling_detection/msg" TYPE FILE FILES
     "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg"
     "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg"
+    "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg"
+    "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
     )
 endif()
 

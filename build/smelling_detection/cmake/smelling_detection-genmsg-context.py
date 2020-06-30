@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg;/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg"
+messages_str = "/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg;/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg;/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg;/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg"
 services_str = ""
 pkg_name = "smelling_detection"
 dependencies_str = "std_msgs"

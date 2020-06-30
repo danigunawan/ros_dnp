@@ -54,6 +54,8 @@ CMAKE_BINARY_DIR = /home/vision/work/computer_vision_projects/catkin_ws/build
 include smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp.dir/progress.make
 
 smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp: /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/Rectangle.h
+smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp: /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/PickingInfo.h
+smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp: /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/Coord2D.h
 smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp: /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/ObjectStatus.h
 
 
@@ -63,15 +65,30 @@ smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp: /home/vi
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vision/work/computer_vision_projects/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from smelling_detection/Rectangle.msg"
 	cd /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection && /home/vision/work/computer_vision_projects/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg -Ismelling_detection:/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p smelling_detection -o /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection -e /opt/ros/kinetic/share/gencpp/cmake/..
 
+/home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/PickingInfo.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
+/home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/PickingInfo.h: /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg
+/home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/PickingInfo.h: /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg
+/home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/PickingInfo.h: /opt/ros/kinetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vision/work/computer_vision_projects/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from smelling_detection/PickingInfo.msg"
+	cd /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection && /home/vision/work/computer_vision_projects/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/PickingInfo.msg -Ismelling_detection:/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p smelling_detection -o /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection -e /opt/ros/kinetic/share/gencpp/cmake/..
+
+/home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/Coord2D.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
+/home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/Coord2D.h: /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg
+/home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/Coord2D.h: /opt/ros/kinetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vision/work/computer_vision_projects/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from smelling_detection/Coord2D.msg"
+	cd /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection && /home/vision/work/computer_vision_projects/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Coord2D.msg -Ismelling_detection:/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p smelling_detection -o /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection -e /opt/ros/kinetic/share/gencpp/cmake/..
+
 /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/ObjectStatus.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
 /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/ObjectStatus.h: /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg
 /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/ObjectStatus.h: /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/Rectangle.msg
 /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/ObjectStatus.h: /opt/ros/kinetic/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vision/work/computer_vision_projects/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from smelling_detection/ObjectStatus.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/vision/work/computer_vision_projects/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating C++ code from smelling_detection/ObjectStatus.msg"
 	cd /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection && /home/vision/work/computer_vision_projects/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg/ObjectStatus.msg -Ismelling_detection:/home/vision/work/computer_vision_projects/catkin_ws/src/smelling_detection/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p smelling_detection -o /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection -e /opt/ros/kinetic/share/gencpp/cmake/..
 
 smelling_detection_generate_messages_cpp: smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp
 smelling_detection_generate_messages_cpp: /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/Rectangle.h
+smelling_detection_generate_messages_cpp: /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/PickingInfo.h
+smelling_detection_generate_messages_cpp: /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/Coord2D.h
 smelling_detection_generate_messages_cpp: /home/vision/work/computer_vision_projects/catkin_ws/devel/include/smelling_detection/ObjectStatus.h
 smelling_detection_generate_messages_cpp: smelling_detection/CMakeFiles/smelling_detection_generate_messages_cpp.dir/build.make
 

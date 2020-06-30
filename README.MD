@@ -70,3 +70,55 @@ python ApproachingNode.py
 
 **Note**:
 * This node will publish message related to Approaching information on /approach_info topic
+
+
+### 3.5 Picking Node
+
+<code>
+cd ~/your_path/catkin_ws
+
+source devel/setup.bash
+
+cd ~/your_path/catkin_ws/src/smelling_detection/src
+
+source setup.bash
+
+python picking_detection_ros.py
+</code>
+
+**Note**:
+* This node will publish message related to Picking information on /pick_info topic
+
+
+### 3.6 Gazing Node
+
+<code>
+cd ~/your_path/catkin_ws
+
+source devel/setup.bash
+
+cd ~/your_path/catkin_ws/src/head_pose_estimation/src
+
+source setup.bash
+
+python head_pose_ros_dlib.py 
+</code>
+
+**Note**:
+* This node will publish message related to Gazing information on /headpose_info topic
+
+
+### 3.7 Central Node
+
+<code>
+cd ~/your_path/catkin_ws
+
+source devel/setup.bash
+
+cd ~/your_path/catkin_ws/src/central_logic/src
+
+python central_logic.py
+</code>
+
+**Note**:
+* This node will export file log.csv

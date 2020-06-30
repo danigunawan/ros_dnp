@@ -6,6 +6,7 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
 subdirs(approaching)
+subdirs(central_logic)
 subdirs(head_pose_estimation)
 subdirs(smelling_detection)
 subdirs(realsense2_camera)

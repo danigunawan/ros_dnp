@@ -127,6 +127,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/vision/work/computer_vision_projects/catkin_ws/build/gtest/cmake_install.cmake")
   include("/home/vision/work/computer_vision_projects/catkin_ws/build/approaching/cmake_install.cmake")
+  include("/home/vision/work/computer_vision_projects/catkin_ws/build/central_logic/cmake_install.cmake")
   include("/home/vision/work/computer_vision_projects/catkin_ws/build/head_pose_estimation/cmake_install.cmake")
   include("/home/vision/work/computer_vision_projects/catkin_ws/build/smelling_detection/cmake_install.cmake")
   include("/home/vision/work/computer_vision_projects/catkin_ws/build/realsense2_camera/cmake_install.cmake")

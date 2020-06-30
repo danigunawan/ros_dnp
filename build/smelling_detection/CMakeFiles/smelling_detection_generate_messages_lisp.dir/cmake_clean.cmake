@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/smelling_detection_generate_messages_lisp"
   "/home/vision/work/computer_vision_projects/catkin_ws/devel/share/common-lisp/ros/smelling_detection/msg/Rectangle.lisp"
+  "/home/vision/work/computer_vision_projects/catkin_ws/devel/share/common-lisp/ros/smelling_detection/msg/PickingInfo.lisp"
+  "/home/vision/work/computer_vision_projects/catkin_ws/devel/share/common-lisp/ros/smelling_detection/msg/Coord2D.lisp"
   "/home/vision/work/computer_vision_projects/catkin_ws/devel/share/common-lisp/ros/smelling_detection/msg/ObjectStatus.lisp"
 )
 
