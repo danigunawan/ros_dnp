@@ -1,2 +1,2 @@
-approaching:central_logic:hand-waving:head_pose_estimation:realsense2_camera:ros-video-recorder:smelling_detection
+approaching:central_logic:hand-waving:head_pose_estimation:phone_detector:realsense2_camera:ros-video-recorder:smelling_detection
 -DCATKIN_DEVEL_PREFIX=/home/vision/work/computer_vision_projects/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/vision/work/computer_vision_projects/catkin_ws/install -G Unix Makefiles

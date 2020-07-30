@@ -50,7 +50,8 @@ class HumanSkeleton:
         self.is_started = False
         self.resize_to_default = None
         self.resize_out_ratio = 4.0
-        self.objectbox_forearm_ratio = 0.8
+        self.objectbox_forearm_ratio_left = 2
+        self.objectbox_forearm_ratio_right = 2.1
         self.touchingpoint_objectbox_ratio = 0.6
 
         self.prepare_knocked = False
@@ -86,13 +87,15 @@ class HumanSkeleton:
     def get_taken_object_box(self, elbow, wrist, isleft=True):
         
         forearm_length = ((elbow[0]-wrist[0])**2 + (elbow[1] - wrist[1])**2)**(0.5)
-        box_len = int(self.objectbox_forearm_ratio * forearm_length)
+        
 
         if isleft:
-            tl = (wrist[0] -  box_len, int(wrist[1] - box_len*self.touchingpoint_objectbox_ratio))
+            box_len = 100#int(self.objectbox_forearm_ratio_left * forearm_length)
+            tl = (wrist[0] -  int(box_len/2), int(wrist[1] - int(box_len/2)))
             br = (tl[0] + box_len, tl[1] + box_len)
         else:
-            tl = (wrist[0], int(wrist[1] - box_len*self.touchingpoint_objectbox_ratio))
+            box_len = 100#int(self.objectbox_forearm_ratio_right * forearm_length)
+            tl = (wrist[0]- int(box_len/2), int(wrist[1] - int(box_len/2)))
             br = (tl[0] + box_len, tl[1] + box_len)
 
         return tl, br

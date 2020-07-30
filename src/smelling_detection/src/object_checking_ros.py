@@ -48,6 +48,8 @@ def main():
     name_objects = objectmatching.get_name_objects()
     pub_object_status = rospy.Publisher("object_status", ObjectStatus, queue_size=10)
     time.sleep(1)
+    #cv2.namedWindow("object_checking", cv2.WINDOW_NORMAL)
+    #cv2.resizeWindow("object_checking", 600, 400)
 
     while True:
 
@@ -57,13 +59,14 @@ def main():
         exists_objects_name, dict_box_objects = objectmatching.\
                 check_multi_objects_in_image(color_img)
         frame = objectmatching.visual_exists_object(color_img, exists_objects_name)
-
-        cv2.imshow("frame", frame)
+        print(frame.shape)
+        cv2.imshow("object_checking", frame)
         cv2.waitKey(10)
         msg = create_obj_status(name_objects, exists_objects_name, dict_box_objects)
         pub_object_status.publish(msg)
     
     rospy.spin()
+    cv2.destroyAllWindows()
 
 
 if __name__=="__main__":

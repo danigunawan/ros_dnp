@@ -124,6 +124,13 @@ class ApproachingNode(object):
             return self.app_detect.identify_human_tracking(last_dict_humans, humans\
                     ,self.color_img)
         return None
+    
+    def identify_human_tracking_sort(self, last_dict_humans, humans, viz=False):
+
+        if self.color_img is not None:
+            return self.app_detect.identify_human_tracking_sort(last_dict_humans, humans\
+                    ,self.color_img)
+        return None
 
     def get_depth_xy(self, x, y):
 
@@ -149,7 +156,7 @@ class ApproachingNode(object):
                  math.pow(point1[1] - point2[1],2) + math.pow(point1[2] - point2[2], 2))
          return dist
 
-    def get_depth_for_humans(self, dict_humans):
+    def get_depth_for_humans(self, dict_humans, using_pose=False):
 
         image_h, image_w, _ = self.color_img.shape
 
@@ -162,30 +169,37 @@ class ApproachingNode(object):
             y2 = rect.y2
             ix, iy = int((x1+x2)/2), int((y1+y2)/2)
             
-            id_nose = 0
-            sorted_id = sorted(human["pose"].body_parts.keys())
-            body_part = human["pose"].body_parts[sorted_id[0]]
-            x, y = (int(body_part.x * image_w + 0.5), \
-                    int(body_part.y * image_h + 0.5))
+            if using_pose:
+                id_nose = 0
+                sorted_id = sorted(human["pose"].body_parts.keys())
+                body_part = human["pose"].body_parts[sorted_id[0]]
+                x, y = (int(body_part.x * image_w + 0.5), \
+                        int(body_part.y * image_h + 0.5))
+            else:
+                (x1, y1), (x2, y2) = human["box"]
+                y = int((y1+y2)/2)
+                x = x1 + int((y2-y1)/3)
 
             dist = self.calculate_distance(ix, iy, x, y)
             dict_humans[key]["dist"] = round(dist, 1)
             dict_humans[key]["coord"] = (x, y)
     
-    def visualize_human(self, dict_humans):
+    def visualize_human(self, dict_humans, viz_obj=True):
         
         img = None
 
         if self.color_img is not None:
             img = self.app_detect.visualize_human(dict_humans, self.color_img)
-            for exist, rect in zip(self.object_status.exists, \
-                    self.object_status.object_rect):
-                if not exist:
-                    color = (0, 255, 0)
-                else:
-                    color = (255, 0, 0)
-                img = cv2.rectangle(img, (rect.x1, rect.y1), \
-                        (rect.x2, rect.y2), color)
+
+            if viz_obj:
+                for exist, rect in zip(self.object_status.exists, \
+                        self.object_status.object_rect):
+                    if not exist:
+                        color = (0, 255, 0)
+                    else:
+                        color = (255, 0, 0)
+                    img = cv2.rectangle(img, (rect.x1, rect.y1), \
+                            (rect.x2, rect.y2), color)
 
         return img
 
@@ -195,7 +209,7 @@ class ApproachingNode(object):
             return self.app_detect.create_first_human_dict(humans, self.color_img)
         return None
 
-    def create_first_tracking(self, dict_humans):
+    def create_first_tracking(self, last_dict_humans):
         
         if self.color_img is not None:
             return self.app_detect.create_first_tracking(last_dict_humans, self.color_img)
@@ -220,8 +234,8 @@ class ApproachingNode(object):
         print("Publish approach info, ", dict_humans.keys())
         self.pub_approach_info.publish(msg)
 
-if __name__=="__main__":
-    
+def main():
+
     appnode = ApproachingNode()
     rospy.init_node("approaching_node")
     time.sleep(1)
@@ -229,6 +243,9 @@ if __name__=="__main__":
     last_dict_humans = None
     new_dict_humans = None
     
+    cv2.namedWindow("approaching_viz", cv2.WINDOW_NORMAL)
+    cv2.resizeWindow("approaching_viz", 600, 400)
+
     while True:
 
         if appnode.get_color_img() is None:
@@ -243,7 +260,7 @@ if __name__=="__main__":
                     last_dict_humans, humans, viz=False)
            #new_dict_humans = 
            appnode.get_depth_for_humans(new_dict_humans)
-        cv2.imshow("original", appnode.get_color_img())
+        #cv2.imshow("original", appnode.get_color_img())
         if new_dict_humans is not None:
             processed_frame = appnode.visualize_human(new_dict_humans)
         else:
@@ -259,11 +276,55 @@ if __name__=="__main__":
         else:
             appnode.publish_approach_info(new_dict_humans)
 
-        cv2.imshow("Processed frame", processed_frame)
+        cv2.imshow("approaching_viz", processed_frame)
         c = cv2.waitKey(10) & 0xFF
 
         if c==ord('e'):
             exit()
 
     rospy.spin()
+    cv2.destroyAllWindows()
+
+def main_sort():
+
+    appnode = ApproachingNode()
+    rospy.init_node("approaching_node")
+    time.sleep(1)
+    last_frame = None
+    dict_humans = dict()
+
+    cv2.namedWindow("approaching_viz", cv2.WINDOW_NORMAL)
+    cv2.resizeWindow("approaching_viz", 600, 400)
+
+    while True:
+
+        if appnode.get_color_img() is None:
+            continue
+
+        humans = appnode.get_humans()
+        #print("Num of humans: ", len(humans))
+        #
+        dict_humans = appnode.identify_human_tracking_sort( \
+                dict_humans, humans, viz=False)
+        #print(dict_humans.keys())
+
+        appnode.get_depth_for_humans(dict_humans)
+
+        processed_frame = appnode.visualize_human(dict_humans)
+        
+        appnode.publish_approach_info(dict_humans)
+
+        cv2.imshow("approaching_viz", processed_frame)
+        c = cv2.waitKey(10) & 0xFF
+
+        if c==ord('e'):
+            exit()
+
+    rospy.spin()
+    cv2.destroyAllWindows()
+
+if __name__=="__main__":
+    
+    #main_sort()
+    main()
 

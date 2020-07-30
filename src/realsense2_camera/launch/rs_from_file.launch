@@ -3,7 +3,10 @@
   <arg name="json_file_path"    default=""/>
   <arg name="camera"            default="camera"/>
   <arg name="tf_prefix"           default="$(arg camera)"/>
-  <arg name="rosbag_filename"   default="/home/vision/work/computer_vision_projects/ActionRecognitionGazeSample/front/20200407_145317_cut1.bag"/>
+  <!-- <arg name="rosbag_filename"   default="/home/vision/Downloads/SmartPhoneUsingSample/test/20200603_150659_People2.bag"/> -->
+  <!-- <arg name="rosbag_filename"   default="/home/vision/work/data/TACVideo20200715_view1/20200715_150123view1_single.bag"/> -->
+  <!-- <arg name="rosbag_filename"   default="/home/vision/work/data/TACVideo20200715_view2/20200715_143005view2_single.bag"/> -->
+  <arg name="rosbag_filename"   default="/home/vision/work/computer_vision_projects/ActionRecognitionGazeSample/front/20200407_145317_cut7.bag"/>
 
   <arg name="fisheye_width"       default="0"/>
   <arg name="fisheye_height"      default="0"/>

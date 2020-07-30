@@ -1830,6 +1830,24 @@ clean: head_pose_estimation/CMakeFiles/head_pose_estimation_genlisp.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory phone_detector
+
+# Convenience name for "all" pass in the directory.
+phone_detector/all:
+
+.PHONY : phone_detector/all
+
+# Convenience name for "clean" pass in the directory.
+phone_detector/clean:
+
+.PHONY : phone_detector/clean
+
+# Convenience name for "preinstall" pass in the directory.
+phone_detector/preinstall:
+
+.PHONY : phone_detector/preinstall
+
+#=============================================================================
 # Directory level rules for directory smelling_detection
 
 # Convenience name for "all" pass in the directory.

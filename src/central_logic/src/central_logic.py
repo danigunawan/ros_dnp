@@ -12,6 +12,15 @@ import cv2
 import numpy as np
 import copy
 
+from argparse import ArgumentParser
+
+parser = ArgumentParser()
+
+parser.add_argument("--name_out", type=str, default=None,\
+                    help="Name of exported video")
+
+args = parser.parse_args()
+
 class CentralLogic(object):
 
     def __init__(self):
@@ -167,7 +176,7 @@ class CentralLogic(object):
 
     def save_log_file(self):
         df = DataFrame(self.log)
-        df.to_csv("log.csv")
+        df.to_csv("{}".format(args.name_out))
 
 if __name__=="__main__":
     

@@ -7,6 +7,7 @@ import copy
 import cv2
 import pickle
 from tracker import Tracker
+from sort import Sort
 
 class ApproachingDetection(object):
 
@@ -21,6 +22,8 @@ class ApproachingDetection(object):
 
         #self._realsense = RealSense()
         self.tracktype = None
+
+        self.tracker = Sort()
 
     def _get_dist_between_object_human():
         pass
@@ -198,7 +201,7 @@ class ApproachingDetection(object):
 
     def identify_human_tracking(self, last_dict_humans, new_humans, \
                 frame, viz=True):
-        
+        print(frame.shape)
         h, w, _ = frame.shape
         new_humans_box = []
 
@@ -254,8 +257,47 @@ class ApproachingDetection(object):
             self.id_human += 1
 
         return last_dict_humans
+    
+    def identify_human_tracking_sort(self, last_dict_humans, new_humans, \
+            frame, viz=True):
+        h, w, _ = frame.shape
+        human_boxes = []
 
-    def get_depth_for_humans(self, dict_humans, br_obj, color_frame, depth_frame):
+        for human in new_humans:
+
+            box = self._get_box_from_human_pose(human, w, h)
+            x1, y1, x2, y2 = box[0][0], box[0][1], box[1][0], box[1][1]
+            if x1 < 0: x1 = 0
+            if y1 < 0: y1 = 0
+            if x2 >= w: x2 = w-1
+            if y2 >= h: y2 = h-1
+            tmp_box = [x1, y1, x2, y2, 1]
+            human_boxes.append(tmp_box)
+
+        np_human_boxes = np.array(human_boxes)
+        print(human_boxes)
+
+        if len(human_boxes) > 0:
+            trackers = self.tracker.update(np_human_boxes)
+        else:
+            trackers = []
+        
+        print(trackers)
+        last_keys = last_dict_humans.keys()
+
+        for d in trackers:
+
+            k = int(d[4])
+            if k not in last_keys:
+                last_dict_humans[k] = dict()
+
+            last_dict_humans[k]["box"] = (int(d[0]), int(d[1])), (int(d[2]), int(d[3]))
+            last_dict_humans[k]["pose"] = None
+        
+        return last_dict_humans
+
+    def get_depth_for_humans(self, dict_humans, br_obj, color_frame, depth_frame, \
+            using_pose=False):
         
         color_image = np.asanyarray(color_frame.get_data())
         image_h, image_w, _ = color_image.shape
@@ -265,11 +307,16 @@ class ApproachingDetection(object):
             ix, iy = int((self.object_coord[0][0] + self.object_coord[1][0])/2),\
                     int((self.object_coord[0][1] + self.object_coord[1][1])/2)
             
-            id_nose = 0
-            sorted_id = sorted(human["pose"].body_parts.keys())
-            body_part = human["pose"].body_parts[sorted_id[0]]
-            x, y = (int(body_part.x * image_w + 0.5), \
-                    int(body_part.y * image_h + 0.5))
+            if using_pose:
+                id_nose = 0
+                sorted_id = sorted(human["pose"].body_parts.keys())
+                body_part = human["pose"].body_parts[sorted_id[0]]
+                x, y = (int(body_part.x * image_w + 0.5), \
+                        int(body_part.y * image_h + 0.5))
+            else:
+                (x1, y1), (x2, y2) = human["box"]
+                y = int((y1+y2)/2)
+                x = x1 + int((y2-y1)/3)
 
             dist = br_obj.calculate_distance(ix, iy, x, y,\
                     color_frame, depth_frame)

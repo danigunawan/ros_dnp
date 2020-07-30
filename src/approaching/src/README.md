@@ -15,6 +15,10 @@ Run: python test_video.py --path_bag=/home/vision/work/computer_vision_projects/
 
 If you done provide --path_bag option, program will get data from camera device plug in computer.
 
+Tesing for sort tracking algorithm:
+python test_sort_tracking.py --path_bag=/home/vision/work/computer_vision_projects/ActionRecognitionGazeSample/front/20200407_145317_cut6.bag --get_object=0 --wcolor=640 --hcolor=480 --wdepth=640 --hdepth=480 --ratedepth=15 --ratecolor=15 --model=cmu --saved_video=3
+
+for Sort project, should use conda to install (if use conda enviroment )
 
 ## Human identify: 
 1. Tracking, in this way, dict_human will consist other attribute is tracker
